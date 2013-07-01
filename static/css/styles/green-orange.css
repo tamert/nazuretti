@@ -1,0 +1,260 @@
+/* header and topmenu */
+.topmenu {
+	background:url(green-orange/topmenu_bg.png) center 0 no-repeat}
+
+.topmenu .dropdown li a {
+	text-shadow:0 1px 1px #333;}
+	
+.topmenu .dropdown li a:hover,
+.topmenu .dropdown .current-menu-item a,
+.topmenu .dropdown .current-menu-item li a:hover,
+.topmenu .dropdown .current-menu-item .current_page_item a,
+.topmenu .dropdown .current-menu-ancestor a,
+.topmenu .dropdown .current-menu-ancestor a:hover,
+.topmenu .dropdown li li.current-menu-ancestor a,
+.topmenu .dropdown li .current-menu-ancestor .current-menu-item a,
+.topmenu .dropdown .menu-item-home.current-menu-item a, 
+.topmenu .dropdown .menu-item-home a:hover{
+	color:#cfd49b;
+	text-shadow:0 1px 1px #111}
+
+.topmenu .dropdown .current-menu-item ul li a,
+.topmenu .dropdown .current-menu-ancestor ul li a,
+.topmenu .dropdown .current-menu-ancestor .current-menu-item li a,
+.topmenu .dropdown .menu-item-home ul li a,
+.topmenu .dropdown .current-menu-ancestor .current-menu-ancestor li a,
+.topmenu .dropdown .current-menu-ancestor li .current-menu-item li a,
+.topmenu .dropdown .current-menu-ancestor .current-menu-ancestor .current-menu-ancestor li a {
+	color:#e1e1e1;
+	text-shadow:none}
+
+.topmenu .dropdown li ul li a:hover,
+.topmenu .dropdown .current-menu-ancestor ul li a:hover,
+.topmenu .dropdown .current-menu-ancestor .current-menu-item a,
+.topmenu .dropdown .current-menu-ancestor li .current-menu-item a,
+.topmenu .dropdown li .current-menu-item a,
+.topmenu .dropdown li.parent li a:hover,
+.topmenu .dropdown .current-menu-ancestor .current-menu-ancestor a,
+.topmenu .dropdown .current-menu-ancestor .current-menu-ancestor .current-menu-ancestor a,
+.topmenu .dropdown .current-menu-ancestor .current-menu-ancestor .current-menu-ancestor li a:hover,
+.topmenu .dropdown .current-menu-ancestor .current-menu-ancestor .current-menu-ancestor .current-menu-item a{
+	color:#f5b41e;
+	text-shadow:0 1px 1px #333}
+	
+.header_slider .pagination li a {
+	background-image:url(green-orange/slider_pagination.png)}
+
+.header_slider .pagination li.current a {
+	color:#1e3305}
+	
+.header_slider .prev, .header_slider .next {
+	background-image:url(green-orange/slider_arrows.png)}
+	
+.header_slider .slide_title,
+.header_slider .slide_title a {
+	color:#1e3305;
+	text-shadow:0 1px 1px #96bb35}
+
+.header_slider .slide_text {
+	text-shadow:0 1px 1px #444}
+
+.header_slider .slide_text .link-more {
+	color:#ffd100;
+	text-shadow:0 1px 1px #321404}
+
+.menu_circle .selected .caption span,
+.header .menu_circle .caption:hover span {
+	color:#cfd49b}
+	
+/* middle content */
+input[type=text],input[type=password],textarea{
+	background:url(green-orange/input_bg.png) 0 0 repeat-x #ecf3e6}
+	
+.comment-form .inputtext, .comment-form .textarea {
+	border-left:1px solid #dfe9d7;
+	border-right:1px solid #dfe9d7;
+	background:url(green-orange/input_bg.png) 0 0 repeat-x #ecf3e6}
+
+.content .newsletterBox .inputField {
+	background-color:#ecf3e6}
+
+.widget_search .inputField,
+.newsletterBox .inputField {
+	color:#4c4c4c;}
+
+h1,h2,h3,h4,h5,h6,
+.menu_circle .menu_title h2 {
+	color:#0e1803}
+	
+h1 span, h2 span, h3 span ,h4 span, h5 span {
+	color:#f87e06}
+
+.sidebar .widget_links li a,
+.sidebar .widget_categories li a,
+.sidebar .widget_meta li a,
+.sidebar .widget_pages li a,
+.sidebar .widget_nav_menu li a,
+.sidebar .widget_archive li a,
+.sidebar .widget_tag_cloud .tagcloud a,
+.sidebar .flickr .flickr_badge_image img,
+.widget_recent_posts .post-meta .link-comments,
+.widget_popular_posts .post-meta .link-comments,
+.widget_login form label,
+.post-meta-top, .post-meta-top a,
+.post-meta-top .link-comments,
+.link-back,
+.tf_pagination, .tf_pagination .page-numbers,
+.author-contact, .comment-author,
+.comment-author .link-author,
+.comment-date,
+.comment-form .row label {
+	color:#416517}
+
+.container_12 blockquote {
+	color:#69903a}
+
+a,
+.entry a,
+.menu_circle .menu_title a,
+.link_arrow_left, .link_arrow_right, .link-more,
+.quote-title, .quote-author,
+.quote-author span,
+.quote_right, .quote_left,
+.post_list li a:hover,
+.faq_q, .faq_question.active,
+.contact-box strong,
+.sidebar .widget-container li a:hover,
+.sidebar .widget-container .current-menu-item a,
+.sidebar .widget-container .current_page_item a,
+.sidebar .comment-meta,
+.widget_twitter .tweet_item a,
+.widget_calendar table a,
+.sidebar .widget_links li a:hover,
+.sidebar .widget_categories li a:hover,
+.sidebar .widget_meta li a:hover,
+.sidebar .widget_pages li a:hover,
+.sidebar .widget_nav_menu li a:hover,
+.sidebar .widget_archive li a:hover,
+.sidebar .widget-container li.current-menu-item a,
+.sidebar .widget-container li.current_page_item a,
+.sidebar .widget-container.widget_categories li li a:hover,
+.sidebar .widget-container.widget_links li li a:hover,
+.sidebar .widget-container.widget_meta li li a:hover,
+.sidebar .widget-container.widget_pages li li a:hover,
+.sidebar .widget-container.widget_nav_menu li li a:hover,
+.sidebar .widget-container.widget_archive li li a:hover,
+.widget_contact .contact-address .link-more,
+.contact-social .row a:hover,
+.sidebar .widget_tag_cloud .tagcloud a:hover,
+.widget_recent_posts .post-meta a,
+.widget_popular_posts .post-meta a,
+.widget_recent_posts ul li .post-title:hover,
+.widget_popular_posts ul li .post-title:hover,
+.content .link-arrow,
+.widget_login .forget_password a:hover,
+.post-item h2 a:hover,
+.post-meta-top a:hover,
+.post-meta-bot .meta-author,
+.post-meta-bot .meta-author a,
+.post-item .post-meta-bot .link-more,
+.link-back:hover,
+.tf_pagination .page-numbers:hover,
+.tf_pagination .page_current,
+.author-text h4,
+.entry .author-text h4,
+.link-addcomment,
+.link-reset:hover,
+.gallery-item-name h2 a:hover,
+.gallery-list .gallery-author a,
+.gallery-more a  {
+	color:#f87e06}
+
+.sidebar .comment-meta a {
+	color:#f87e06 !important}
+
+.widget_calendar table a:hover { 
+  background:#f87e06;}
+	
+.entry a:hover {
+	color:#ff5400}
+
+.slideshow.slideQuotes .prev,
+.slideshow.slideQuotes .next {
+	background-image:url(green-orange/arrows_slide.png)}
+
+.slideshow .link-more {
+	color:#69903a}
+
+/* bottom content */
+.bot_content h3 {
+	color:#69903a}
+
+.promo_list .slide_title {
+	color:#1e3305}
+
+.promo_list .slide_title em {
+	color:#f87e06}
+
+.promo_list .slide_title span {
+	color:#69903a}
+
+.promo_list .link-more {
+	color:#f87e06}
+	
+.promo_list .prev,
+.promo_list .next {
+	background-image:url(green-orange/slider_arrows_2.png)}
+
+.newsletter_text strong {
+	color:#f87e06}
+
+/* footer */
+.footer {
+	background:#293111}
+
+.footer a {
+	color:#dcd2cb}
+
+.footer a:hover {
+	color:#f3a20f}
+
+.footer .social_facebook,
+.footer .social_twitter {
+	background-image:url(green-orange/social_footer.png);
+	text-shadow:0 1px 1px #222;}
+
+.footer .social_facebook:hover,
+.footer .social_twitter:hover {
+	color:#f3a20f}
+
+.copyright {
+	color:#95877c;
+	text-shadow:0 1px 1px #222;}
+
+/* carousel arrows */
+.menu_circle .jcarousel-skin-tango .jcarousel-next-horizontal {
+    background-image:url(green-orange/next-horizontal2.png) !important}
+
+.menu_circle .jcarousel-skin-tango .jcarousel-prev-horizontal {
+    background-image:url(green-orange/prev-horizontal2.png) !important}
+
+.menu_circle .caption {
+	background-image:url(green-orange/circle_caption.png)}
+
+/* buttons */
+.newsletterBox .btn-arrow,
+.widget_search .btn-arrow,
+.widget_login .submit .btn-submit,
+.tf_pagination .page_prev,
+.tf_pagination .page_next,
+.btn-submit, 
+.contact-form .btn-submit,
+.comment-form .btn-submit,
+.contact-form .btn-submit:active,
+.comment-form .btn-submit:active{
+	background-image:url(green-orange/sprite_1.png);
+	color:#804426;
+	text-shadow:0 1px 1px #f2e056;}
+
+.post-meta-top .link-comments {
+	background-image:url(green-orange/sprite_1.png)}

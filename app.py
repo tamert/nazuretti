@@ -1,0 +1,25 @@
+import flask
+
+from flask import render_template
+
+app = flask.Flask(__name__)
+app.config['UPLOAD_FOLDER'] = './static/uploads/'
+app.config['SECRET_KEY'] = 'dsfhadkjfgnfavkrniu4yi2y348734'
+app.debug = True
+flask.current_app = app
+
+from models import *
+import admin
+
+@app.route('/')
+def index():
+  return render_template('pages/index.html')
+
+@app.route('/kahvaltiliklar')
+def products():
+  products = Product.query.all()
+  return render_template('products/index.html', products = products)
+
+
+if __name__ == "__main__":
+  app.run(port=3000)

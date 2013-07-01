@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="ThemeFuse">
+    <meta name="description" content="A short description of your company">
+    <meta name="keywords" content="Some keywords that best describe your business">
+    <title>Lazutti - {% block pagetitle %}Anasayfa{% endblock %}</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400italic,400,700,700italic,900|Arizonia' rel='stylesheet' type='text/css'>
+    <link href="{{ url_for('static', filename='css/style.css') }}" media="screen" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/styles/green-orange.css') }}" media="screen" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/lazutti.css') }}" media="screen" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/general.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.tools.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/slides.min.jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.backgroundPosition.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.jcarousel.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='images/skins/tango/skin.css') }}">
+
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ie.css') }}"><![endif]-->
+
+    <link href="{{ url_for('static', filename='custom.css') }}" media="screen" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div class="body_wrap">
+
+      <div class="header" style="background-color:#546e12; background-image:url({{url_for('static', filename='images/pattern_2.png')}})">
+        <div class="header_highlight">
+          <div class="header_bot">
+            <div class="container_12">
+
+              <div class="topmenu">            
+                <div class="logo"><a href="index.html"><h1>CAFÉ  Lounge - bistro & cake shop</h1></a></div>
+
+                <ul class="dropdown">
+                  <li class="menu-item-home current-menu-item"><a href="index.html"><span>Anasayfa</span></a></li>
+                  <li><a href="{{ url_for('products') }}"><span>Kahvaltiliklar</span></a></li>
+                  <li><a href="#"><span>Siparis Verin</span></a></li>
+                  <li><a href="#"><span>Fotograflar</span></a></li>
+                  <li><a href="#"><span>Iletisim</span></a></li>
+                </ul>                
+
+                <div class="header-social">
+                  <a href="#" class="twitter"></a>
+                  <a href="#" class="facebook"></a>
+                </div>
+              </div>
+              <!--/ topmenu -->
+
+              <!-- header slider -->
+              <div class="header_slider">        	
+                <div class="slides_container">
+                  <div class="slide">
+                    <div class="slide_image"><img src="{{url_for('static', filename='images/temp/slider_img_1.png')}}" /></div>
+                    <div class="slide_text">
+                      <p class="slide_title"><strong>Koyden Kahvaltilik Urunler</strong></p>
+                      <p>Geleneksel tarim yöntemleriyle, kendi bitkilerimizin tohumlarıyla hazırlanmış enfes kahvaltılıklar...<a href="menus.html" class="link-more">MENÜMÜZE BİR GÖZ ATIN!</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ header slider -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ header -->
+
+      <div class="middle">
+        <div class="container_12">  
+
+          {% block content %}
+          {% endblock %}
+
+        </div>
+      </div>
+
+    <div class="bot_content" style="background-color:#e8f1e2; background-image:url({{url_for('static', filename='images/pattern_1.png')}})">
+      <div class="bot_content_inner">
+        <div class="container_12">
+          <div class="grid_12">
+
+            <div class="promo_list">
+              <h3>NELER YAPTIK</h3>
+
+              <div class="slides_container">
+                <div class="slide">
+                  <div class="slide_text">
+                    <p>Etiam at risus et justo dignissim congue. Donec cone lacinia dui, a potitor lec tus condimentum lao. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.  </p>
+                    <span class="news-date">12/4/2013</span>
+                    <div class="clear"></div>
+                  </div>                      
+                </div>
+
+                <div class="slide">
+                  <div class="slide_text">
+                    <p>Etiam at risus et justo dignissim congue. Donec cone lacinia dui, a potitor lec tus condimentum lao. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.  </p>
+                    <span class="news-date">12/4/2013</span>
+                    <div class="clear"></div>
+                  </div>                      
+                </div>
+
+              </div>
+            </div>
+            <script type="text/javascript">
+              jQuery(document).ready(function($) {
+                  $('.promo_list').slides({
+                    play: 6000,
+                    pause: 5000,
+                    hoverPause: true,
+                    generatePagination: false,
+                    generateNextPrev: true,
+                    slideSpeed: 700,
+                    slideEasing: 'easeOutCubic',
+                    autoHeight: true
+                    });						
+                  });
+                </script>
+                <!--/ promo list -->
+
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+          <div class="footer_inner">
+            <div class="container_12">
+              <div class="grid_8">
+
+                <div class="botmenu">            
+                  <ul>
+                    <li class="menu-item-home current-menu-item"><a href="index.html"><span>Anasayfa</span></a></li>
+                    <li><a href="menus.html"><span>Kahvaltiliklar</span></a></li>
+                    <li><a href="#"><span>Siparis Verin</span></a></li>
+                    <li><a href="#"><span>Fotograflar</span></a></li>
+                    <li><a href="#"><span>Iletisim</span></a></li>
+                  </ul>                
+                </div>
+
+                <div class="copyright">&copy; 2012 Bütün hakları saklıdır - Lazutti</div>
+              </div>
+              <div class="grid_4">
+                <a href="#" class="social_facebook">FACEBOOK sayfamız</a>
+                <a href="#" class="social_twitter">TWITTER takip edin</a>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </body>
+  </html>
+

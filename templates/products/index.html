@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Kahvaltılıklar{% endblock %}
+
+{% block content %}
+<div class="page-products">
+  <div class="gallery-list gl_col_3">
+    <h1>Kahvaltılıklar</h1>
+    {% for x in range(10) %}
+    <div class="gallery-item">
+      <div class="gallery-item-name"><h2><a href="#">Chocolate Sparkles Copy and corporate Slogan</a></h2></div>
+      <div class="gallery-image">
+        <a href="images/temp/portfolio_big_img_1.jpg" class="preload" data-rel="prettyPhoto" title="Chocolate Sparkles Copy and corporate Slogan"><img src="{{ url_for('static', filename='images/temp/portfolio_mid_img_1.jpg') }}" alt="" ></a>
+      </div>
+      <div class="gallery-text">
+        <div class="gallery-description">
+          <p>Ut enim ad minim veniam, quis nostrud us exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute irure dolor.</p>
+        </div>
+      </div> 
+      <div class="clear"></div>                               
+    </div>
+    {% endfor %}
+    <div class="clear"></div>           
+  </div>
+</div>
+{% endblock %}

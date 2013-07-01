@@ -1,0 +1,22 @@
+.page-homepage {
+  padding-left: 40px;
+  margin-top: 40px;
+  padding-bottom: 30px;
+}
+
+.page-homepage p {
+  color: #808080;
+  font-family: helvetica;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.page-homepage p strong {
+  font-weight: bold;
+  color: #444;
+}
+
+.page-homepage .homepage-image {
+  float: right;
+  margin-left: 140px;
+}

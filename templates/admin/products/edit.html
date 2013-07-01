@@ -1,0 +1,13 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/jcrop.css')}}" type="text/css" />
+{% endblock %}
+{% block tail %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.color.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jcrop.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/product_form.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.widget.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.iframe-transport.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fileupload.js') }}"></script>
+{% endblock %}

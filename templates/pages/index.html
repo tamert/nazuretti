@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}Hello World{% endblock %}
+
+{% block content %}
+<div class="page-homepage clearfix">
+  <img src="{{ url_for('static', filename='images/homepage-image.jpg') }}" class="homepage-image" alt="" />
+  <p>
+    <strong>Lazutti;</strong> Lazcada ‘Mısır’ demek. Şimdi buğday ununun kullanıldığı her yerde bizde mısır unu kullanılırç Soframızdan da mısır ekmeği eksik olmaz. Fırından yeni çıkmış mısır ekmeği üzerine tereyağını sürüp yemeden, kahvaltı edilmiş sayılmaz.
+  </p>
+  <p>
+      Rize Ardeşenli, Laz bir ailenin kızıyım. Işıklı köyü ve Taşbaşı Köyü’nde bahöelerimiz, çay, meyve ve fındık ağaçlarımız var. Ürünlerde kullandığım malzemelerin çoğunluğu köyümdenç Annemler, halamlar, yengemler, teyzemler ve komşu laz kadınları da bu girişimimin gizli kahramanları...
+  </p>
+  <p>
+    Geleneksel tarım yöntemiyle, kendi bitkilerimizin tohumlarıyla... GDO yok, kimyasal yok, seri üretim de yok. Bu yüzden bulunabilirliği az ve mevsimsel değişkenler gösterebilir. Yine de şansınızı deneyin...
+  </p>
+</div>
+{% endblock %}
