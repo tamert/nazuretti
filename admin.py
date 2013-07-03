@@ -74,10 +74,10 @@ class ProductView(ModelView):
       if isfile(mirrorPath):
         os.remove(mirrorPath)
       if model and hasattr(model, 'id') and model.id > 0:
-        oldphoto = request.form['photo-old']
         if request.form['photo-old']:
+          oldphoto = request.form['photo-old']
           oldpath = os.path.join(flask.current_app.config['UPLOAD_FOLDER'], oldphoto)
-          print oldpath
+
           if isfile(oldpath):
             os.remove(oldpath)
 
