@@ -9,6 +9,7 @@ from flask.ext.admin import Admin, BaseView, expose
 from flask.ext.admin.contrib.sqlamodel import ModelView
 from flask.ext.uploads import UploadSet, IMAGES, configure_uploads
 from flask.ext.wtf import Form, FileField, file_allowed, file_required, HiddenField, TextField, TextAreaField, widgets
+from wtforms.widgets import core as wtf
 from werkzeug import secure_filename 
 
 import models
@@ -20,7 +21,16 @@ class FileUploadWidget(widgets.FileInput):
   def __call__(self, field, **kwargs):
     kwargs['data-url'] = '/admin/mirrorimage/'
 
-    return super(FileUploadWidget, self).__call__(field, **kwargs)
+    html = super(FileUploadWidget, self).__call__(field, **kwargs)
+    if field.data != '':
+      params = dict(
+        name  = '%s-old' % (field.name),
+        value = field.data,
+        type  = 'hidden'
+      )
+      html += wtf.HTMLString(u'<input %s>' % wtf.html_params(**params))
+
+    return html
 
 class ProductForm(Form):
   title = TextField('Isim')
@@ -47,20 +57,15 @@ class ProductView(ModelView):
       mirrorPath   = os.path.join(uploadFolder, 'mirror', request.form['image-0'])
       newPath      = os.path.join(uploadFolder, request.form['image-0'])
       box = (
-        int(request.form['image-0x'], 10),
-        int(request.form['image-0y'], 10),
-        int(request.form['image-0w'], 10),
-        int(request.form['image-0h'], 10)
+        int(float(request.form['image-0x'])),
+        int(float(request.form['image-0y'])),
+        int(float(request.form['image-0x2'])),
+        int(float(request.form['image-0y2']))
       )
 
       img = Image.open(mirrorPath)
-      img.crop(box)
+      img = img.crop(box)
       img.save(newPath)
-
-      if model.photo:
-        oldpath = os.path.join(flask.current_app.config['UPLOAD_PATH'], model.photo)
-        if isfile(oldpath):
-          os.remove(oldpath)
 
       model.photo = request.form['image-0']
       models.db.session.add(model)
@@ -68,6 +73,13 @@ class ProductView(ModelView):
 
       if isfile(mirrorPath):
         os.remove(mirrorPath)
+      if model and hasattr(model, 'id') and model.id > 0:
+        oldphoto = request.form['photo-old']
+        if request.form['photo-old']:
+          oldpath = os.path.join(flask.current_app.config['UPLOAD_FOLDER'], oldphoto)
+          print oldpath
+          if isfile(oldpath):
+            os.remove(oldpath)
 
   def on_model_change(self, form, model):
     self.process_image(form, model)
@@ -83,10 +95,15 @@ class MirrorImage(BaseView):
     file = request.files['photo']
     filename = secure_filename(file.filename)
     file.save(os.path.join(os.path.join(flask.current_app.config['UPLOAD_FOLDER'], 'mirror'), filename))
+
+    img = Image.open(os.path.join(os.path.join(flask.current_app.config['UPLOAD_FOLDER'], 'mirror'), filename))
+    width, height = img.size
+
     return json.jsonify(
-        url=url_for('static', filename='uploads/mirror/' + filename),
-        filename = filename
-        )
+      url=url_for('static', filename='uploads/mirror/' + filename),
+      filename = filename,
+      size=dict(width=width, height=height)
+    )
 
   def is_visible(self):
     return False

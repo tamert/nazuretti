@@ -8,8 +8,9 @@ $(function () {
         var data   = data.result,
             img    = $('<img />'),
             $el    = $('input[type=file]').eq(i),
-            inputs = ['x','y','w','h'],
-            file   = $('<input />');
+            inputs = ['x','y','x2','y2'],
+            file   = $('<input />'),
+            size   = data.size;
 
         file.attr({
           name:  'image-' + i,
@@ -33,11 +34,13 @@ $(function () {
 
         img.Jcrop({
           onChange: function (c) {
-            $(['x','y','w','h']).each(function (i, el) {
+            $(['x','y','x2','y2']).each(function (i, el) {
               var $el = inputs[i];
               $el.val(c[el]);
             });
-          }
+          },
+          boxWidth: 500,
+          trueSize: [size.width, size.height]
         });
       }
     });
