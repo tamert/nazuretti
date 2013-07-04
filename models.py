@@ -1,5 +1,7 @@
 import flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask import url_for
+from flask import Markup
 
 app = flask.current_app
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lazutti.db'
@@ -24,6 +26,10 @@ class Product(db.Model):
     title = db.Column(db.String)
     description = db.Column(db.Text)
     photo = db.Column(db.String)
+
+    def thumbnail(self):
+      url = url_for('static', filename='uploads/' + self.photo)
+      return Markup(u'<img src="%s" />' % url)
 
     def __unicode__(self):
         return u'<Product:%s>' % (self.title)
