@@ -26,6 +26,8 @@ class Product(db.Model):
     title = db.Column(db.String)
     description = db.Column(db.Text)
     photo = db.Column(db.String)
+    is_orderable = db.Column(db.Boolean)
+    price = db.Column(db.String)
 
     def thumbnail(self):
       url = url_for('static', filename='uploads/' + self.photo)

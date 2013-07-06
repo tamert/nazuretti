@@ -2,24 +2,36 @@ from .imports import *
 from .utilities import *
 from .fields import FileUploadField
 
+from flask.ext.wtf import BooleanField, FloatField, Optional
+
 class ProductForm(Form):
   title = TextField('Isim')
   description = TextAreaField("Kisa Metin")
   photo = FileUploadField("Fotograf")
+  is_orderable = BooleanField("Siparis Verilebilir?")
+  price = FloatField("Fiyat", validators=[Optional()])
 
 class ProductView(ModelView):
+  list_template   = 'admin/products/list.html'
   edit_template   = 'admin/products/edit.html'
   create_template = 'admin/products/create.html'
   form = ProductForm
   column_formatters = dict(
     photo=photo_formatter
   )
+  column_labels = dict(
+    title='Isim',
+    description='Kisa Metin',
+    photo='Resim',
+    is_orderable='Siparis?',
+    price='Fiyat'
+  )
 
   def __init__(self, session, **kwargs):
     super(ProductView, self).__init__(models.Product, session, **kwargs)
 
   def process_image(self, form, model):
-    if request.form['image-0']:
+    if request.form.has_key('image-0'):
       uploadFolder = flask.current_app.config['UPLOAD_FOLDER']
       mirrorPath   = os.path.join(uploadFolder, 'mirror', request.form['image-0'])
       newPath      = os.path.join(uploadFolder, request.form['image-0'])
@@ -53,7 +65,10 @@ class ProductView(ModelView):
             os.remove(oldpath)
 
   def on_model_change(self, form, model):
-    self.process_image(form, model)
+    if request.form.has_key('image-0'):
+      self.process_image(form, model)
+    elif request.form.has_key('old-photo'):
+      model.photo = request.form['old-photo']
 
   def on_model_delete(self, model):
     file_path = os.path.join(flask.current_app.config['UPLOAD_FOLDER'], 'uploads', model.photo)

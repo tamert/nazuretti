@@ -1,4 +1,5 @@
 from .imports import *
+from werkzeug.datastructures import FileStorage
 
 class FileUploadWidget(widgets.FileInput):
   def __call__(self, field, **kwargs):
@@ -37,3 +38,11 @@ class FileUploadField(FileField):
       return secure_filename(self.data)
     else:
       return u''
+
+  def post_validate(self, form, changed):
+    if self.data:
+      self.data = secure_filename(self.data.filename)
+    elif request.form.has_key(self.name + '-old'):
+      self.data = request.form[self.name + '-old']
+    else:
+      self.data = None

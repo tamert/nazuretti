@@ -1,4 +1,6 @@
 *.pyc
 *.DS_Store
+*.swp
+*.db
 .ropeproject
-./static/uploads/*
+static/uploads/*.*
