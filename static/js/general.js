@@ -44,19 +44,17 @@ jQuery(document).ready(function($) {
 	$(".table-pricing tr:even").addClass("even");
 
 // gallery
-	$(".gl_col_2 .gallery-item::nth-child(2n)").addClass("nomargin");
+	$(".gl_col_2 .gallery-item:nth-child(2n)").addClass("nomargin");
 	
 // pricing
 	$(".pricing_box li.price_col").css('width',$(".pricing_box ul").width() / $(".pricing_box li.price_col").size());
 
 // buttons	
-	if (!$.browser.msie) {
-		$(".button_link, .button_styled, .btn-share, .tf_pagination .page_prev, .tf_pagination .page_next, .btn-submit, .button_link_arrow").hover(function(){
-			$(this).stop().animate({"opacity": 0.90});
-		},function(){
-			$(this).stop().animate({"opacity": 1});
-		});
-	}
+  $(".button_link, .button_styled, .btn-share, .tf_pagination .page_prev, .tf_pagination .page_next, .btn-submit, .button_link_arrow").hover(function(){
+    $(this).stop().animate({"opacity": 0.90});
+  },function(){
+    $(this).stop().animate({"opacity": 1});
+  });
 	
 // preload images
 	var cache = [];

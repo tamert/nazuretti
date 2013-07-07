@@ -20,3 +20,247 @@
   float: right;
   margin-left: 140px;
 }
+
+.menu_item .m_image {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.menu_item .m_image img {
+  height: 60px;
+  margin-left: -25px;
+}
+
+.menu_item .m_name {
+  height: 60px;
+  line-height: 60px;
+  width: 485px;
+}
+
+.menu_item .m_quantity {
+  font-family: Helvetica;
+  font-size: 12px;
+  color: #7a7a7a;
+  background: #cecece;
+  border-radius: 3px;
+  padding: 3px 7px;
+  margin-left: 10px;
+}
+
+.pricelist {
+  padding: 0;
+  margin: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 30px;
+  padding-bottom: 30px;
+}
+
+.menu_item .m_price_txt {
+  padding-top: 28px;
+}
+
+.menu_item .m_price {
+  padding-top: 19px;
+}
+
+.menu_item .m_price .mini {
+  font-size: 12px;
+}
+
+.menu_item .mcol.m_cart_button {
+  float: right;
+}
+
+.menu_item .m_cart_button a {
+  margin-top: 13px;
+  margin-right: 20px;
+  height: 35px;
+  line-height: 35px;
+  width: 115px;
+  display: block;
+  background: #6d8420;
+  font-family: Helvetica;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  text-align: left;
+  border-radius: 4px;
+  padding-left: 15px;
+}
+
+.menu_item .m_cart_button a .plus {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  float: right;
+  margin-right: 15px;
+  height: 35px;
+  line-height: 32px;
+}
+
+.pricelist p, .pricelist h1 {
+  text-align: left;
+}
+
+h1 span {
+  color: #982ba6;
+}
+
+.shopping-cart .cart-row {
+  height: 60px;
+  margin-bottom: 5px;
+}
+
+.shopping-cart .cart-row .product-name {
+  height: 60px;
+  background: #f0eff2;
+  width: 301px;
+  line-height: 60px;
+  text-align: left;
+  padding: 0 15px;
+  font-size: 15px;
+  color: #747474;
+  font-weight: bold;
+  float: left;
+}
+
+.shopping-cart .cart-row .order-quantity {
+  width: 147px;
+  height: 60px;
+  background: #f0eff2;
+  float: left;
+  margin-left: 5px;
+  line-height: 60px; 
+  font-family: Helvetica;
+  font-size: 22px;
+  color: #555;
+  padding-right: 30px;
+}
+
+.shopping-cart .cart-row .order-quantity span {
+  font-family: Helvetica;
+  font-size: 14px;
+  color: #9c9c9c;
+}
+
+.shopping-cart .cart-row .order-quantity .buttons {
+  width: 30px;
+  height: 60px;
+  float: right;
+  margin-right: -30px;
+}
+
+.shopping-cart .cart-row .order-quantity .buttons .up {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(../images/orderbuttons.png) no-repeat;
+}
+
+.shopping-cart .cart-row .order-quantity .buttons .down {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(../images/orderbuttons.png) 0 -30px no-repeat;
+}
+
+.shopping-cart .cart-row .order-price {
+  width: 173px;
+  height: 60px;
+  background: #f0eff2;
+  margin-left: 5px;
+  float: left; 
+  line-height: 65px;
+}
+
+.shopping-cart .product-remove {
+  background: #f0eff2;
+  float: left; 
+  height: 60px;
+  width: 154px;
+  margin-left: 5px;
+  padding-right: 30px;
+}
+
+.shopping-cart .product-remove a {
+  display: block;
+  height: 60px;
+  line-height: 63px;
+  font-family: Helvetica;
+  font-size: 13px;
+  font-weight: bold; 
+  color: #808080;
+}
+
+.shopping-cart .product-remove span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(../images/carpi.png) no-repeat;
+  margin-right: -17px;
+  margin-top: 15px;
+  float: right;
+}
+
+.shopping-cart .cart-total {
+  height: 40px;
+}
+
+.shopping-cart .cart-total .total-text {
+  height: 40px;
+  background: #f0eff2;
+  font-family: Helvetica;
+  font-size: 15px;
+  font-weight: bold;
+  width: 498px;
+  text-align: left;
+  padding-left: 15px;
+  line-height: 40px;
+  float: left;
+}
+
+.shopping-cart .cart-total .total-value {
+  height: 40px;
+  width: 173px;
+  float: left;
+  background: #f0eff2;
+  margin-left: 5px;
+	font-size:13px;
+	color:#808080;
+	line-height:48px;
+	text-align:center;
+}
+
+.row input.inputtext, .row textarea.textarea {
+  width: 729px;
+  margin-right: 0;
+  background: url(../images/input_bg.png) 0 0 repeat-x #e5e3eb;
+}
+
+.row.row-4 input {
+  width: 298px;
+}
+
+.row.row-4 input.last {
+  margin-right: 0;
+}
+
+.order-submit .contact-form .comment-form .row label {
+  width: 100px;
+  font-style: normal;
+}
+
+.order-submit .contact-form .comment-form .row label.second {
+  padding-left: 15px;
+  width: 85px;
+}
+
+.order-submit .contact-form .comment-form .btn-submit {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
+  font-weight: bold; 
+  float: left;
+}

@@ -22,12 +22,13 @@ class Page(db.Model):
 class Product(db.Model):
     __tablename__ = 'products'
 
-    id = db.Column(db.Integer, primary_key = True)
-    title = db.Column(db.String)
-    description = db.Column(db.Text)
-    photo = db.Column(db.String)
+    id           = db.Column(db.Integer, primary_key = True)
+    title        = db.Column(db.String)
+    description  = db.Column(db.Text)
+    photo        = db.Column(db.String)
     is_orderable = db.Column(db.Boolean)
-    price = db.Column(db.String)
+    price        = db.Column(db.String)
+    quantity     = db.Column(db.String)
 
     def thumbnail(self):
       url = url_for('static', filename='uploads/' + self.photo)

@@ -10,6 +10,7 @@ class ProductForm(Form):
   photo = FileUploadField("Fotograf")
   is_orderable = BooleanField("Siparis Verilebilir?")
   price = FloatField("Fiyat", validators=[Optional()])
+  quantity = TextField("Miktar", validators=[Optional()])
 
 class ProductView(ModelView):
   list_template   = 'admin/products/list.html'
@@ -20,11 +21,12 @@ class ProductView(ModelView):
     photo=photo_formatter
   )
   column_labels = dict(
-    title='Isim',
-    description='Kisa Metin',
-    photo='Resim',
-    is_orderable='Siparis?',
-    price='Fiyat'
+    title        = 'Isim',
+    description  = 'Kisa Metin',
+    photo        = 'Resim',
+    is_orderable = 'Siparis?',
+    price        = 'Fiyat',
+    quantity     = 'Miktar'
   )
 
   def __init__(self, session, **kwargs):

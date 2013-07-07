@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="{{url_for('static', filename='js/underscore.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/backbone.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/orders_page.js')}}"></script>
+<script type="text/javascript">
+  $(function () {
+      window.ShoppingCart.initItems({{orders|tojson|safe}});
+  });
+</script>
+{% endblock %}
+{% block title %}Siparis{% endblock %}
+{% block content %}
+<div class="pricelist">        
+  <h1>Aşağıdaki <span>ÜRÜN LİSTEMİZE</span> bir göz atın:</h1>
+  <p>Her ürünün yanında bulunan sepete ekle butonuna basarak alışveriş <br />
+ sepetinizi doldurabilirsiniz. Lütfen alışverişinizi tamamladıktan sonra listenin <br />
+ altinda bulunan sipariş ver butonuna basınız.</p>
+
+  <br>
+
+  {% for product in products %}
+  <div class="menu_item">
+    <div class="mcol m_image"><img src="{{url_for('static', filename='uploads/' + product.photo)}}" alt=""></div>
+    <div class="mcol m_name">
+      <strong>{{product.title}}</strong>
+      {% if product.quantity %}
+      <span class="m_quantity">{{product.quantity}}</span>
+      {% endif %}
+    </div>
+    <div class="mcol m_price_txt">Fiyat:</div>
+    <div class="mcol m_price">{{product.price}} <span class="mini">TL</span></div>
+    <div class="mcol m_cart_button">
+      <a href="#" rel="{{product.id}}">SEPETE AT <span class="plus">+</span></a>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="clear"></div>
+
+  <br />
+  <br />
+
+  <h1><span>ALIŞVERİŞ SEPETİ</span></h1>
+
+  <div id="shopping-cart" class="shopping-cart">
+    <p class="empty-text">Sepetiniz su anda bos. Yukardaki menuden sepetinize ekleme yapabilirsiniz.</p>
+    <p class="full-text">
+    Aşağıda bulunan alışveriş bölmesinden istediğiniz ürünün adetini <br />
+    güncelleyebilir veya dilerseniz sepetten çıkarılmasını gerçekleştirebilirsiniz.
+    </p>
+    <script id="order-item-template" type="text/template">
+      <div class="cart-row" rel="<%= product.id %>">
+        <div class="product-name"><%= product.title %></div>
+        <div class="order-quantity">
+          <%= quantity %>
+          <span>adet</span>
+          <div class="buttons">
+            <a href="#" class="up"></a>
+            <a href="#" class="down"></a>
+          </div>
+        </div>
+        <div class="order-price">
+          <span class="mcol m_price_txt">Fiyat:</span>
+          <span class="mcol m_price"><%= total %></span> <span class="mini">TL</span>
+        </div>
+        <div class="product-remove">
+          <a href="#">SEPETTEN CIKAR <span></span></a>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </script>
+    <div id="order-list-view">
+    </div>
+    <div class="cart-total" id="order-total-view">
+      <div class="total-text">TOPLAM:</div>
+      <div class="total-value">
+        <span class="mcol m_price_txt">Fiyat:</span>
+        <span class="mcol m_price model-value">0</span> <span class="mini">TL</span>
+      </div>
+    </div>
+    <div class="clear"></div>
+
+    <br />
+    <br />
+
+    <div class="order-submit">
+      <h1><span>SİPARİŞ BİLGİLERİ</span></h1>
+      <div class="add-comment contact-form">
+
+        <div class="comment-form">
+          <form action="" method="post" class="ajax_form" name="contactForm">
+
+            <div class="row row-4">
+              <label>Ad Soyad: *</label>
+              <input type="text" name="yourname" value="" id="name" value="" class="inputtext input_middle required" />
+
+              <label class="second">E-Posta: *</label>
+              <input type="text" name="email" id="email" value="" class="inputtext input_middle required last"/>
+            </div>
+
+            <div class="row row-4">
+              <label>Telefon: *</label>
+              <input type="text" name="yourname" value="" id="name" value="" class="inputtext input_middle required" />
+
+              <label class="second">Sehir: *</label>
+              <input type="text" name="email" id="email" value="" class="inputtext input_middle required last"/>
+            </div>
+
+            <div class="row">
+              <label>Adres: *</label>
+              <textarea cols="30" rows="5" name="message" id="message" class="textarea required"></textarea>
+            </div>
+            <div class="row">
+              <label>Mesaj: *</label>
+              <textarea cols="30" rows="10" name="message" id="message" class="textarea textarea_middle required"></textarea>
+            </div>
+
+            <div class="row">
+              <label>&nbsp;</label>
+              <input type="submit" value="SIPARIS VER" class="btn-submit" id="send" />
+              <div class="clear"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
