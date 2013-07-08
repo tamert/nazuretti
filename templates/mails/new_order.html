@@ -1,0 +1,52 @@
+<p>Sayin yetkili <strong>{{customer.name}}</strong> isimli musteriniz internet siteniz uzerinden yeni bir siparis gonderdi. Musterinizin iletisim bilgilerini ve siparis detaylarini asagidan gorebilirseniz.</p>
+<table>
+  <tr>
+    <td width="100">Ad Soyad:</td>
+    <td>{{customer.name}}</td>
+  </tr>
+  <tr>
+    <td>E-Posta:</td>
+    <td>{{customer.email}}</td>
+  </tr>
+  <tr>
+    <td>Telefon:</td>
+    <td>{{customer.phone}}</td>
+  </tr>
+  <tr>
+    <td>Sehir</td>
+    <td>{{customer.city}}</td>
+  </tr>
+  <tr>
+    <td>Adres:</td>
+    <td>{{customer.address}}</td>
+  </tr>
+  <tr>
+    <td>Mesaj:</td>
+    <td>{{customer.message}}</td>
+  </tr>
+</table>
+<br />
+<br />
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th align="left" style="background: #eee; height: 30px; padding: 5px;">Urun</th>
+      <th align="left" style="background: #eee; height: 30px; padding: 5px;">Adet</th>
+      <th align="left" style="background: #eee; height: 30px; padding: 5px;">Tutar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td style="padding: 5px;border-bottom: 1px solid #ddd;">{{order.product.title}}</td>
+      <td style="padding: 5px;border-bottom: 1px solid #ddd;">{{order.quantity}}</td>
+      <td style="padding: 5px;border-bottom: 1px solid #ddd;">{{order.total}} TL</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="2" style="padding: 5px;">TOPLAM:</td>
+      <td style="padding: 5px;">{{total}} TL</td>
+    </tr>
+  </tbody>
+</table>

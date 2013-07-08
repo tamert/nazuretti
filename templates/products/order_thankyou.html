@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="pricelist">
+<h1><span>SIPARISINIZ ALINDI!</span></h1>
+<p>Siparisiniz bize ulasmistir. En kisa zamanda size geri donus yapilacaktir.</p>
+<strong>Siparisiniz:</strong>
+<ul class="product-list">
+  {% for order in orders %}
+  <li>{{order.product.title}} <strong>{{order.quantity}} adet</strong> - {{order.total}} TL</li>
+  {% endfor %}
+  <li>Toplam: {{total}} TL</li>
+</ul>
+</div>
+{% endblock %}

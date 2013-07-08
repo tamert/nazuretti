@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block head %}
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery.validate.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/contact/contact_page.js')}}"></script>
+{% endblock %}
+{% block content %}
+<div class="pricelist">
+  <h1><span>ILETISIM FORMU</span></h1>
+  <p>
+  Aşağıdaki iletişim formunu kullanarak bize görüş ve önerilerinizi iletebilirsiniz.
+  </p>
+  <div class="order-submit">
+    <div class="add-comment contact-form">
+      <div class="comment-form">
+        <form action="{{url_for('contact_submit')}}" id="order-submit" method="post" class="ajax_form" name="contactForm">
+          <div class="row row-4">
+            <div class="form-field">
+              <label>Ad Soyad: *</label>
+              <input type="text" name="name" value="" id="name" value="" class="inputtext input_middle required" />
+              <div class="clear"></div>
+            </div>
+    
+            <div class="form-field">
+              <label class="second">E-Posta: *</label>
+              <input type="text" name="email" id="email" value="" class="inputtext input_middle required email last"/>
+              <div class="clear"></div>
+            </div>
+          </div>
+    
+          <div class="row row-4">
+            <div class="form-field">
+              <label>Telefon:</label>
+              <input type="text" name="phone" value="" id="phone" value="" class="inputtext input_middle" />
+              <div class="clear"></div>
+            </div>
+    
+            <div class="form-field">
+              <label class="second">Şehir:</label>
+              <input type="text" name="city" id="city" value="" class="inputtext input_middle last"/>
+              <div class="clear"></div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="form-field">
+              <label>Mesaj: *</label>
+              <textarea cols="30" rows="10" name="message" id="message" class="textarea textarea_middle required"></textarea>
+              <div class="clear"></div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <label>&nbsp;</label>
+            <input type="submit" value="GÖNDER" class="btn-submit" id="send" />
+            <div class="clear"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
