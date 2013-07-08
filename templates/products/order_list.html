@@ -2,10 +2,16 @@
 {% block head %}
 <script type="text/javascript" src="{{url_for('static', filename='js/underscore.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/backbone.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/orders_page.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/orders/orders_backbone.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/orders/orders_page.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery.validate.js')}}"></script>
 <script type="text/javascript">
   $(function () {
-      window.ShoppingCart.initItems({{orders|tojson|safe}});
+      orders = {{orders|tojson|safe}};
+      window.ShoppingCart.initItems(orders);
+      _(orders).each(function (order) {
+        $('a[rel=' + order.product.id + ']').addClass('disabled').text('SEPETE EKLENDI');
+      });
   });
 </script>
 {% endblock %}
@@ -89,31 +95,48 @@
       <div class="add-comment contact-form">
 
         <div class="comment-form">
-          <form action="" method="post" class="ajax_form" name="contactForm">
-
+          <form action="/submit-order" id="order-submit" method="post" class="ajax_form" name="contactForm">
             <div class="row row-4">
-              <label>Ad Soyad: *</label>
-              <input type="text" name="yourname" value="" id="name" value="" class="inputtext input_middle required" />
+              <div class="form-field">
+                <label>Ad Soyad: *</label>
+                <input type="text" name="name" value="" id="name" value="" class="inputtext input_middle required" />
+                <div class="clear"></div>
+              </div>
 
-              <label class="second">E-Posta: *</label>
-              <input type="text" name="email" id="email" value="" class="inputtext input_middle required last"/>
+              <div class="form-field">
+                <label class="second">E-Posta: *</label>
+                <input type="text" name="email" id="email" value="" class="inputtext input_middle required email last"/>
+                <div class="clear"></div>
+              </div>
             </div>
 
             <div class="row row-4">
-              <label>Telefon: *</label>
-              <input type="text" name="yourname" value="" id="name" value="" class="inputtext input_middle required" />
+              <div class="form-field">
+                <label>Telefon: *</label>
+                <input type="text" name="phone" value="" id="phone" value="" class="inputtext input_middle required" />
+                <div class="clear"></div>
+              </div>
 
-              <label class="second">Sehir: *</label>
-              <input type="text" name="email" id="email" value="" class="inputtext input_middle required last"/>
+              <div class="form-field">
+                <label class="second">Sehir: *</label>
+                <input type="text" name="city" id="city" value="" class="inputtext input_middle required last"/>
+                <div class="clear"></div>
+              </div>
             </div>
 
             <div class="row">
-              <label>Adres: *</label>
-              <textarea cols="30" rows="5" name="message" id="message" class="textarea required"></textarea>
+              <div class="form-field">
+                <label>Adres: *</label>
+                <textarea cols="30" rows="5" name="address" id="address" class="textarea required"></textarea>
+                <div class="clear"></div>
+              </div>
             </div>
             <div class="row">
-              <label>Mesaj: *</label>
-              <textarea cols="30" rows="10" name="message" id="message" class="textarea textarea_middle required"></textarea>
+              <div class="form-field">
+                <label>Mesaj:</label>
+                <textarea cols="30" rows="10" name="message" id="message" class="textarea textarea_middle "></textarea>
+                <div class="clear"></div>
+              </div>
             </div>
 
             <div class="row">

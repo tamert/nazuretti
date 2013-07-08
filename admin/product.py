@@ -69,11 +69,11 @@ class ProductView(ModelView):
   def on_model_change(self, form, model):
     if request.form.has_key('image-0'):
       self.process_image(form, model)
-    elif request.form.has_key('old-photo'):
-      model.photo = request.form['old-photo']
+    elif request.form.has_key('photo-old'):
+      model.photo = request.form['photo-old']
 
   def on_model_delete(self, model):
-    file_path = os.path.join(flask.current_app.config['UPLOAD_FOLDER'], 'uploads', model.photo)
+    file_path = os.path.join(flask.current_app.config['UPLOAD_FOLDER'], model.photo)
     if isfile(file_path):
       os.remove(file_path)
 

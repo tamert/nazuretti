@@ -10,30 +10,44 @@ app.config['SQLALCHEMY_ECHO']         = True
 db = SQLAlchemy(app)
 
 class Page(db.Model):
-    __tablename__ = 'pages'
+  __tablename__ = 'pages'
 
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, unique=True)
-    content = db.Column(db.String)
+  id = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String, unique=True)
+  content = db.Column(db.String)
 
-    def __unicode__(self):
-        return u'<Page:%s>' % (self.title)
+  def __unicode__(self):
+    return u'<Page:%s>' % (self.title)
 
 class Product(db.Model):
-    __tablename__ = 'products'
+  __tablename__ = 'products'
 
-    id           = db.Column(db.Integer, primary_key = True)
-    title        = db.Column(db.String)
-    description  = db.Column(db.Text)
-    photo        = db.Column(db.String)
-    is_orderable = db.Column(db.Boolean)
-    price        = db.Column(db.String)
-    quantity     = db.Column(db.String)
+  id           = db.Column(db.Integer, primary_key = True)
+  title        = db.Column(db.String)
+  description  = db.Column(db.Text)
+  photo        = db.Column(db.String)
+  is_orderable = db.Column(db.Boolean)
+  price        = db.Column(db.String)
+  quantity     = db.Column(db.String)
 
-    def thumbnail(self):
-      url = url_for('static', filename='uploads/' + self.photo)
-      return Markup(u'<img src="%s" />' % url)
+  def thumbnail(self):
+    url = url_for('static', filename='uploads/' + self.photo)
+    return Markup(u'<img src="%s" />' % url)
 
-    def __unicode__(self):
-        return u'<Product:%s>' % (self.title)
+  def __unicode__(self):
+    return u'<Product:%s>' % (self.title)
+
+class Picture(db.Model):
+  __tablename__ = 'pictures'
+
+  id = db.Column(db.Integer, primary_key = True)
+  title = db.Column(db.String)
+  image = db.Column(db.String)
+
+  def thumbnail(self):
+    url = url_for('static', filename='uploads/pictures')
+    return Markup(u'<img src="%s" />' % url)
+
+  def __unicode__(self):
+    return u'<Picture:%s>' % self.image
 

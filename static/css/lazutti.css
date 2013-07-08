@@ -264,3 +264,24 @@ h1 span {
   font-weight: bold; 
   float: left;
 }
+
+.form-field {
+  float: left;
+  position: relative;
+}
+
+.comment-form .row label.error {
+  position: absolute;
+  right: 5px;
+  width: auto !important;
+  text-align: right;
+  padding: 0 10px;
+  margin: 0;
+  height: 25px;
+  line-height: 25px;
+  top: 10px;
+  border-color: #800 !important;
+  border-radius: 3px;
+  background: #a00;
+  color: #fff;
+}
