@@ -5,7 +5,7 @@ from flask import render_template, request, session
 from flask.ext.mail import Mail
 
 app = flask.Flask(__name__)
-app.config['UPLOAD_FOLDER'] = os.path.dirname(os.path.realpath(__file__)) + '/uploads/'
+app.config['UPLOAD_FOLDER'] = os.path.dirname(os.path.realpath(__file__)) + '/static/uploads/'
 app.config['SECRET_KEY']    = 'dsfhadkjfgnfavkrniu4yi2y348734'
 app.debug = True
 
