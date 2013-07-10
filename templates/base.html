@@ -42,10 +42,10 @@
                 <div class="logo"><a href="index.html"><h1>CAFÉ  Lounge - bistro & cake shop</h1></a></div>
 
                 <ul class="dropdown">
-                  <li class="menu-item-home current-menu-item"><a href="{{url_for('index')}}"><span>Anasayfa</span></a></li>
+                  <li><a href="{{url_for('index')}}"><span>Anasayfa</span></a></li>
                   <li><a href="{{ url_for('products') }}"><span>Kahvaltiliklar</span></a></li>
                   <li><a href="{{ url_for('orders') }}"><span>Siparis Verin</span></a></li>
-                  <li><a href="#"><span>Fotograflar</span></a></li>
+                  <li><a href="{{ url_for('pictures') }}"><span>Fotograflar</span></a></li>
                   <li><a href="{{ url_for('contact') }}"><span>Iletisim</span></a></li>
                 </ul>                
 
@@ -93,22 +93,17 @@
               <h3>NELER YAPTIK</h3>
 
               <div class="slides_container">
+                {% for news_item in request.news %}
                 <div class="slide">
                   <div class="slide_text">
-                    <p>Etiam at risus et justo dignissim congue. Donec cone lacinia dui, a potitor lec tus condimentum lao. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.  </p>
-                    <span class="news-date">12/4/2013</span>
+                    <p>
+                    {{news_item.content}}
+                    </p>
+                    <span class="news-date">{{news_item.created_at.strftime('%d/%m/%Y')}}</span>
                     <div class="clear"></div>
                   </div>                      
                 </div>
-
-                <div class="slide">
-                  <div class="slide_text">
-                    <p>Etiam at risus et justo dignissim congue. Donec cone lacinia dui, a potitor lec tus condimentum lao. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.  </p>
-                    <span class="news-date">12/4/2013</span>
-                    <div class="clear"></div>
-                  </div>                      
-                </div>
-
+                {% endfor %}
               </div>
             </div>
             <script type="text/javascript">
@@ -141,11 +136,11 @@
 
                 <div class="botmenu">            
                   <ul>
-                    <li class="menu-item-home current-menu-item"><a href="index.html"><span>Anasayfa</span></a></li>
-                    <li><a href="menus.html"><span>Kahvaltiliklar</span></a></li>
-                    <li><a href="#"><span>Siparis Verin</span></a></li>
-                    <li><a href="#"><span>Fotograflar</span></a></li>
-                    <li><a href="#"><span>Iletisim</span></a></li>
+                    <li class="menu-item-home current-menu-item"><a href="{{ url_for('index') }}"><span>Anasayfa</span></a></li>
+                    <li><a href="{{ url_for('products') }}"><span>Kahvaltiliklar</span></a></li>
+                    <li><a href="{{ url_for('orders') }}"><span>Siparis Verin</span></a></li>
+                    <li><a href="{{ url_for('pictures') }}"><span>Fotograflar</span></a></li>
+                    <li><a href="{{ url_for('contact') }}"><span>Iletisim</span></a></li>
                   </ul>                
                 </div>
 
