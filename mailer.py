@@ -7,7 +7,6 @@ app = flask.current_app
 
 if os.environ['LAZUTTI'] == 'PRODUCTION':
   app.config['MAIL_SERVER'] = 'smtp.webfaction.com'
-  app.config['MAIL_USE_SSL'] = True
   app.config['MAIL_USERNAME'] = 'lazutti'
   app.config['MAIL_PASSWORD'] = '123456'
 
