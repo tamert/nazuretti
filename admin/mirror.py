@@ -3,7 +3,7 @@ from .imports import *
 class MirrorImage(BaseView):
   @expose('/', methods=('POST',))
   def index(self):
-    file = request.files['photo']
+    file = request.files.values().pop()
     filename = secure_filename(file.filename)
     filepath = os.path.join(os.path.join(flask.current_app.config['UPLOAD_FOLDER'], 'mirror'), filename)
 

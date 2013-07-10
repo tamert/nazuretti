@@ -1,0 +1,27 @@
+{% extends 'admin/model/list.html' %}
+{% import 'admin/model/layout.html' as model_layout with context %}
+
+{% block model_menu_bar %}
+  <ul class="nav nav-tabs">
+      <li class="active">
+          <a href="javascript:void(0)">Listele ({{ count }})</a>
+      </li>
+      {% if admin_view.can_create %}
+      <li>
+          <a href="{{ url_for('.create_view', url=return_url) }}">Yeni</a>
+      </li>
+      {% endif %}
+
+      {% if filter_groups %}
+      <li class="dropdown">
+          {{ model_layout.filter_options() }}
+      </li>
+      {% endif %}
+
+      {% if search_supported %}
+      <li>
+          {{ model_layout.search_form() }}
+      </li>
+      {% endif %}
+  </ul>
+{% endblock %}

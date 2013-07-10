@@ -16,8 +16,10 @@ from models import *
 
 # import pages/modules
 import admin
+import news
 import orders
 import contact
+import pictures
 
 @app.route('/')
 def index():

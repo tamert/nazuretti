@@ -51,3 +51,12 @@ class Picture(db.Model):
   def __unicode__(self):
     return u'<Picture:%s>' % self.image
 
+class News(db.Model):
+  __tablename__ = 'news'
+
+  id = db.Column(db.Integer, primary_key = True)
+  content = db.Column(db.Text)
+  created_at = db.Column(db.Date)
+
+  def __unicode__(self):
+    return u'<News:%s...>' % self.content[0:10]

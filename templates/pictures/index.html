@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/prettyPhoto.css') }}" />
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.preloadify.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.prettyPhoto.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/pictures_page.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page-products">
+  <div class="gallery-list gl_col_3">
+    <h1><span>Fotoğraf Galerisi</span></h1>
+
+    {% for picture in pictures %}
+    <div class="gallery-item" style="height: 200px;">
+      <div class="gallery-item-name"><h2>{{picture.title}}</h2> </div>
+      <div class="gallery-image">
+        <a href="{{ url_for('static', filename='uploads/pictures/' + picture.image) }}" class="preload" data-rel="prettyPhoto" title="">
+          <img src="{{ url_for('static', filename='uploads/pictures/thumbs/' + picture.image) }}" alt="{{picture.title}}" />
+        </a>
+      </div>
+      <div class="clear"></div>
+    </div>
+    {% endfor %}
+    <div class="clear"></div>
+  </div>
+</div>
+{% endblock %}

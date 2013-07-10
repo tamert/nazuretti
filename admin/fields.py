@@ -17,9 +17,11 @@ class FileUploadWidget(widgets.FileInput):
         type  = 'hidden'
       )
 
+      append = 'pictures/' if field.name == 'image' else ''
+
       current_image_params = dict(
-        src = url_for('static', filename='uploads/' + field.data) + '?' + str(random.random()),
-        style = 'max-width: 400px;'
+        src = url_for('static', filename='uploads/' + append + field.data) + '?' + str(random.random()),
+        style = 'width: 400px;'
       )
 
       html += wtf.HTMLString(u'<strong>%s</strong>' % 'Suanki Resim:')
