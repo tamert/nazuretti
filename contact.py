@@ -31,10 +31,10 @@ def contact_submit():
 
   mail_body = render_template('mails/new_contact.html', customer=customer)
   with mailer.connect() as con:
-    msg = mailer.message(recipients=['umurgdk@gmail.com'],
+    msg = mailer.message(recipients=[app.config['CONTACT_RECEIVER']],
                          html=mail_body,
                          subject='Iletisim Istegi Var!',
-                         sender='iletisim@lazutticom')
+                         sender=app.config['CONTACT_SENDER'])
     con.send(msg)
 
   return render_template('contact/contact_thankyou.html')

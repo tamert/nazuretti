@@ -100,10 +100,10 @@ def submit_order():
 
   mail_body = render_template('mails/new_order.html', orders=orders, customer=customer, total=total)
   with mailer.connect() as con:
-    msg = mailer.message(recipients=['umurgdk@gmail.com'],
+    msg = mailer.message(recipients=[app.config['ORDER_RECEIVER']],
                          html=mail_body,
                          subject='Siparis Var!',
-                         sender='siparis@lazutticom')
+                         sender=app.config['ORDER_SENDER'])
     con.send(msg)
 
   session['orders'] = {}
