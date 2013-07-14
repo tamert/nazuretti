@@ -4,8 +4,9 @@ import flask
 from flask.ext.mail import Mail, Message
 
 app = flask.current_app
+env = app.config.get('env')
 
-if os.environ['LAZUTTI'] == 'PRODUCTION':
+if env == 'production':
   app.config['MAIL_SERVER'] = 'smtp.webfaction.com'
   app.config['MAIL_USERNAME'] = 'lazutti'
   app.config['MAIL_PASSWORD'] = '123456'
@@ -16,7 +17,7 @@ if os.environ['LAZUTTI'] == 'PRODUCTION':
   app.config['CONTACT_SENDER'] = 'lazutti@lazutti.com'
   app.config['CONTACT_RECEIVER'] = 'lazutti@lazutti.com'
 
-else:
+elif env == 'development':
   app.config['MAIL_SERVER'] = 'smtp.gmail.com'
   app.config['MAIL_PORT'] = 465
   app.config['MAIL_USE_SSL'] = True
