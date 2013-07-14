@@ -9,7 +9,9 @@
     <div class="gallery-item">
       <div class="gallery-item-name"><h2>{{ product.title }}</h2></div>
       <div class="gallery-image">
+        {% if product.photo %}
         <img src="{{ url_for('static', filename='uploads/' + product.photo) }}" alt="" >
+        {% endif %}
       </div>
       <div class="gallery-text">
         <div class="gallery-description">

@@ -27,7 +27,9 @@
 
   {% for product in products %}
   <div class="menu_item">
+    {% if product.photo %}
     <div class="mcol m_image"><img src="{{url_for('static', filename='uploads/' + product.photo)}}" alt=""></div>
+    {% endif %}
     <div class="mcol m_name">
       <strong>{{product.title}}</strong>
       {% if product.quantity %}
