@@ -1,34 +1,54 @@
 $(function () {
-  $('input[type=file]').each(function (i, el) {
-    var $el         = $(this),
-        cropperTemp = null;
+  $('input[data-crop=true]').each(function (i, el) {
+    var $el         = $(el),
+        cropperTemp = null,
+        modelName   = $el.data('model-name');
 
     $el.fileupload({
       dataType: 'json',
+      formData: (modelName ? {model_name:modelName} : {}),
       done: function (e, data) {
         var data     = data.result,
             img      = $('<img />'),
-            $el      = $('input[type=file]').eq(i),
+            $el      = $('input[data-crop=true]').eq(i),
             inputs   = ['x','y','x2','y2'],
             $file    = $('<input />'),
             size     = data.size,
-            $cropper = $('#' + $el.attr('name') + '-cropper');
+            name     = $el.attr('name'),
+            
+            minWidth = $el.data('crop-min-width'),
+            minHeight = $el.data('crop-min-height'),
+            maxWidth  = $el.data('max-width'),
+            ratio     = $el.data('crop-ratio'),
+
+      
+            mirrorUrl = $el.data('mirror-url');
 
         if (cropperTemp) { 
-          $.post('/admin/mirrorimage/clean/', {
-            filename: cropperTemp
-          });
+          options = { filename: cropperTemp };
+          
+          if (modelName) {
+            options.model_name = modelName;
+          }
+
+          $.post(mirrorUrl + 'clean/', options);
         }
 
         cropperTemp  = data.filename;
 
         $file.attr({
-          name:  'image-' + i,
+          name:  name + '-filename',
           value: data.filename,
           type:  'hidden'
         });
 
         img.attr('src', data.url);
+
+        var $cropper = $('#' + name + '-cropper');
+        if ($cropper.length == 0) {
+          $cropper = $('<div id="' + name + '-cropper">')
+          $cropper.appendTo($el.parent());
+        }
 
         $cropper.html('');
         $cropper.append(img).append($file);
@@ -36,25 +56,36 @@ $(function () {
         inputs = $(inputs).map(function () {
           var $inp = $('<input />').attr({
             type: 'hidden',
-            name: 'image-' + i + this
+            name: name+'-' + this
           });
 
           $cropper.append($inp);
           return $inp;
         });
 
-        img.Jcrop({
+        options = {
           onChange: function (c) {
             $(['x','y','x2','y2']).each(function (i, el) {
               var $el = inputs[i];
               $el.val(c[el]);
             });
           },
-          aspectRatio: 1026 / 600,
-          boxWidth: 500,
           trueSize: [size.width, size.height],
-          minSize: [260, 150],
-        });
+        };
+
+        if (ratio) {
+          options.aspectRatio = parseFloat(ratio);
+        }
+
+        if (maxWidth) {
+          options.boxWidth    = maxWidth;
+        }
+
+        if (minWidth || minHeight) {
+          options.minSize     = [minWidth, minHeight];
+        }
+
+        img.Jcrop(options);
       }
     });
   });

@@ -1,13 +1,14 @@
 from .imports import *
 from .utilities import *
-from .fields import FileUploadField
+
+from .components.image_upload.fields import ImageUploadField
 
 from flask.ext.wtf import BooleanField, FloatField, Optional
 
 class ProductForm(Form):
   title = TextField('Isim')
   description = TextAreaField("Kisa Metin")
-  photo = FileUploadField("Fotograf")
+  photo = ImageUploadField("Fotograf")
   is_orderable = BooleanField("Siparis Verilebilir?")
   price = FloatField("Fiyat", validators=[Optional()])
   quantity = TextField("Miktar", validators=[Optional()])

@@ -1,15 +1,30 @@
 from .imports import *
 from .utilities import *
-from .fields import FileUploadField
+
+from .components.image_upload.fields import ImageUploadField
 
 from flask.ext.wtf import BooleanField, FloatField, Optional
 from models import db
 
-from components.image import Image as ImageKit
+from .components.image_upload.image import Image as ImageKit
 
 class PictureForm(Form):
   title = TextField('Isim')
-  image = FileUploadField("Resim")
+  image = ImageUploadField("Resim", upload_options=dict(
+    crop       = dict(ratio = 256.0/250.0, min = (200,300)),
+    max_width  = 400,
+    resize     = (1000, 600),
+    thumbnails = [
+      dict(name='s', size=(36,36)),
+      dict(name='m', size=(100,100))
+    ],
+    model = 'picture'
+  ))
+  detailedPhoto = ImageUploadField("Detay Foto", upload_options=dict(
+    crop = dict(ratio = 2.0/3.0, min = (200, 300)),
+    max_width = 400,
+    model = 'picture'
+  ))
 
 class PictureView(ModelView):
   list_template   = 'admin/pictures/list.html'
