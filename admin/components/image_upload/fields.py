@@ -51,7 +51,7 @@ class ImageUploadWidget(widgets.FileInput):
         )
 
         if self.max_width:
-          current_image_params['style'] += 'width: %spx;' % self.max_width
+          current_image_params['style'] = current_image_params.get('style', '') + 'width: %spx;' % self.max_width
 
         html += wtf.HTMLString(u'<strong>%s</strong>' % 'Suanki Resim:')
         html += wtf.HTMLString(u'<div><img %s /></div>' % wtf.html_params(**current_image_params))

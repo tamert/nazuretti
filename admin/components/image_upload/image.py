@@ -37,7 +37,6 @@ class Image():
   def resize(self, size):
     self.image.thumbnail(size, I.ANTIALIAS)
 
-  
   def save(self, path, keep_old=True):
     self.image.save(path, quality=100)
 
@@ -45,3 +44,10 @@ class Image():
       os.remove(self.path)
       self.path = path
 
+  @staticmethod
+  def append_name(base_name, appendix):
+    filename_parts = base_name.split('.')
+    filename = ".".join(filename_parts[:-1])
+    file_ext = filename_parts[-1]
+
+    return '%s-%s.%s' % (filename, appendix, file_ext)
