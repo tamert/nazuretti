@@ -1,6 +1,7 @@
 #-*- encoding: utf-8-*-
 import os
 import random
+import flask
 from os.path import isfile, isdir
 from flask   import request, current_app, url_for
 from flask.ext import wtf 
@@ -9,6 +10,32 @@ from .fields import ImageUploadField
 from .image  import Image as ImageKit
 
 upload_folder = current_app.config['UPLOAD_FOLDER']
+
+def add_image_uploading_handlers(form, model, db, mclass):
+  def create_decorator(original_fun):
+    def fun(*original_args):
+      update_filenames_to_model(form, original_args[1], db)
+      original_fun(*original_args)
+
+    return fun
+
+  def edit_decorator(original_fun):
+    def fun(*original_args):
+      process_image_uploads(form, original_args[1], db)
+      original_fun(*original_args)
+
+    return fun
+
+  def delete_decorator(original_fun):
+    def fun(*original_args):
+      remove_files_after_deletion(form, original_args[0])
+      original_fun(*original_args)
+
+    return fun
+    
+  mclass.on_model_change    = edit_decorator(mclass.on_model_change)
+  mclass.after_model_change = create_decorator(mclass.after_model_change)
+  mclass.on_model_delete    = delete_decorator(mclass.on_model_delete)
 
 def get_image_column_formatter(field, field_name):
   base_url = 'uploads/'
@@ -20,20 +47,24 @@ def get_image_column_formatter(field, field_name):
   def formatter(self, model, name):
     if getattr(model, field_name, None):
       url = url_for('static', filename = base_url + getattr(model, field_name)) + '?' + str(random.random())
+      return wtf.HTMLString(u'<img src="%s" style="width: 300px;" />' % url)
 
-    return wtf.HTMLString(u'<img src="%s" style="width: 300px;" />' % url)
+    else:
+      return wtf.HTMLString(u'')
 
   return formatter
 
-def remove_files_after_deletion(form, model):
-  for field_name in form.__dict__.keys():
-    field = getattr(form, field_name)
-
-    if getattr(field, 'field_class', None) == ImageUploadField:
+def remove_files_after_deletion(form_class, model):
+  import pudb
+  pudb.set_trace()
+  form = form_class()
+  for field in form:
+    if field.__class__ == ImageUploadField:
+      field_name = field.name
       if getattr(model, field_name):
-        field_options = field.kwargs.get('upload_options', {})
-        model_name = field_options.get('model', '')
-        thumbnails = field_options.get('thumbnails', [])
+        widget        = field.widget
+        model_name    = getattr(widget, 'model_name', '')
+        thumbnails    = getattr(widget, 'thumbnails', [])
 
         file_name = getattr(model, field_name, '')
         file_path = os.path.join(upload_folder, model_name, file_name)
@@ -49,7 +80,8 @@ def remove_files_after_deletion(form, model):
           if isfile(thumb_file_path):
             os.remove(thumb_file_path)
 
-def update_filenames_to_model(form, model, db):
+def update_filenames_to_model(form_class, model, session):
+  form = form_class(flask.request.form)
   for field in form:
     if field.__class__ == ImageUploadField:
       if getattr(model, field.name):
@@ -80,14 +112,17 @@ def update_filenames_to_model(form, model, db):
         if isfile(old_file_path):
           os.rename(old_file_path, new_file_path)
           setattr(model, field.name, new_filename)
-          db.session.add(model)
-          db.session.commit()
+          session.add(model)
+          session.commit()
 
         for thumbnail in thumbnails:
           if isfile(thumbnail['old_path']):
             os.rename(thumbnail['old_path'], thumbnail['new_path'])
 
-def process_image_uploads(form, model, db):
+def process_image_uploads(form_class, model, session):
+  import pudb
+  pudb.set_trace()
+  form = form_class(flask.request.form)
   for field in form:
     if field.__class__ == ImageUploadField:
       new_filename  = request.form.get(field.name + '-filename', '')
@@ -121,8 +156,8 @@ def process_image_uploads(form, model, db):
 
       if new_filename == '':
         setattr(model, field.name, old_photo)
-        db.session.add(model)
-        db.session.commit()
+        session.add(model)
+        session.commit()
 
       else:
         img = ImageKit(mirror_path)
@@ -152,8 +187,8 @@ def process_image_uploads(form, model, db):
             img.save(thumbnail_path)
 
         setattr(model, field.name, new_filename)
-        db.session.add(model)
-        db.session.commit()
+        session.add(model)
+        session.commit()
 
         if isfile(mirror_path):
           os.remove(mirror_path)

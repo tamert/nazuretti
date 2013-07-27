@@ -31,6 +31,7 @@ class ImageUploadWidget(widgets.FileInput):
 
     if self.model_name:
       kwargs['data-model-name'] = self.model_name
+      self.upload_base_url += self.model_name + '/'
       
     if self.crop:
       if self.crop.__class__ == dict:

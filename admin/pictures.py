@@ -7,7 +7,8 @@ from flask.ext.wtf import BooleanField, FloatField, Optional
 from models import db
 
 from .components.image_upload.image import Image as ImageKit
-from .components.image_upload.image_upload import process_image_uploads, update_filenames_to_model, remove_files_after_deletion, get_image_column_formatter
+from .components.image_upload.image_upload import get_image_column_formatter, add_image_uploading_handlers
+
 
 class PictureForm(Form):
   title = TextField('Isim')
@@ -34,15 +35,6 @@ class PictureView(ModelView):
   )
 
   def __init__(self, session, **kwargs):
-    self.column_formatters['image'] = get_image_column_formatter(self.form.image, 'image')
     super(PictureView, self).__init__(models.Picture, session, **kwargs)
-
-  def on_model_change(self, form, model):
-    process_image_uploads(form, model, models.db)
-
-  def after_model_change(self, form, model, created):
-    update_filenames_to_model(form, model, models.db)
-
-  def on_model_delete(self, model):
-    remove_files_after_deletion(self.form, model)
-
+    self.column_formatters['image'] = get_image_column_formatter(self.form.image, 'image')
+    add_image_uploading_handlers(self.form, self.model, session, self)
