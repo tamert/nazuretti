@@ -3,4 +3,4 @@
 *.swp
 *.db
 .ropeproject
-static/uploads/*.*
+static/uploads/*
