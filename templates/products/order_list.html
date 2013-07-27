@@ -18,17 +18,26 @@
 {% block title %}Siparis{% endblock %}
 {% block content %}
 <div class="pricelist">        
-  <h1>Aşağıdaki <span>ÜRÜN LİSTEMİZE</span> bir göz atın:</h1>
-  <p>Her ürünün yanında bulunan sepete ekle butonuna basarak alışveriş <br />
- sepetinizi doldurabilirsiniz. Lütfen alışverişinizi tamamladıktan sonra listenin <br />
- altinda bulunan sipariş ver butonuna basınız.</p>
+  <div class="order-list-info">
+    <h1>Aşağıdaki <span>ÜRÜN LİSTEMİZE</span> bir göz atın:</h1>
+    <p>
+    Her ürünün yanında bulunan sepete ekle butonuna basarak alışveriş <br />
+    sepetinizi doldurabilirsiniz. Lütfen alışverişinizi tamamladıktan sonra listenin <br />
+    altinda bulunan sipariş ver butonuna basınız.
+    </p>
+  </div>
 
+  <div class="order-shipping-badge">
+    <img src="{{ url_for('static', filename='images/order-shipping-badge.png') }}" alt="Siparisleriniz en gec 4 gun icerisinde teslim edilir." />
+  </div>
+
+  <div class="clear"></div>
   <br>
 
   {% for product in products %}
   <div class="menu_item">
     {% if product.photo %}
-    <div class="mcol m_image"><img src="{{url_for('static', filename='uploads/' + product.photo)}}" alt=""></div>
+    <div class="mcol m_image"><img src="{{url_for('static', filename='uploads/products/' + product.photo)}}" alt=""></div>
     {% endif %}
     <div class="mcol m_name">
       <strong>{{product.title}}</strong>
