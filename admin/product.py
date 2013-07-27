@@ -1,13 +1,21 @@
 from .imports import *
 from .utilities import *
-from .fields import FileUploadField
 
 from flask.ext.wtf import BooleanField, FloatField, Optional
+from models import db
+
+from .components.image_upload.fields import ImageUploadField
+from .components.image_upload.image_upload import get_image_column_formatter, add_image_uploading_handlers
 
 class ProductForm(Form):
   title = TextField('Isim')
   description = TextAreaField("Kisa Metin")
-  photo = FileUploadField("Fotograf")
+  photo = ImageUploadField("Fotograf", upload_options=dict(
+    crop      = dict(ratio = 260.0 / 150.0, min = (260, 150)),
+    max_width = 400,
+    resize    = (260,10000000),
+    model     = 'products'
+  ))
   is_orderable = BooleanField("Siparis Verilebilir?")
   price = FloatField("Fiyat", validators=[Optional()])
   quantity = TextField("Miktar", validators=[Optional()])
@@ -17,9 +25,7 @@ class ProductView(ModelView):
   edit_template   = 'admin/products/edit.html'
   create_template = 'admin/products/create.html'
   form = ProductForm
-  column_formatters = dict(
-    photo=photo_formatter
-  )
+  column_formatters = dict()
   column_labels = dict(
     title        = 'Isim',
     description  = 'Kisa Metin',
@@ -31,49 +37,5 @@ class ProductView(ModelView):
 
   def __init__(self, session, **kwargs):
     super(ProductView, self).__init__(models.Product, session, **kwargs)
-
-  def process_image(self, form, model):
-    if request.form.has_key('image-0'):
-      uploadFolder = flask.current_app.config['UPLOAD_FOLDER']
-      mirrorPath   = os.path.join(uploadFolder, 'mirror', request.form['image-0'])
-      newPath      = os.path.join(uploadFolder, request.form['image-0'])
-      box = (
-        int(float(request.form['image-0x'])),
-        int(float(request.form['image-0y'])),
-        int(float(request.form['image-0x2'])),
-        int(float(request.form['image-0y2']))
-      )
-
-      img = Image.open(mirrorPath)
-      img = img.crop(box)
-      width, height = img.size
-      if width != 260 or height != 150:
-        img.thumbnail((260, 150), Image.ANTIALIAS)
-      img.save(newPath, quality=100)
-
-      model.photo = request.form['image-0']
-      models.db.session.add(model)
-      models.db.session.commit()
-
-      if isfile(mirrorPath):
-        os.remove(mirrorPath)
-
-      if model and hasattr(model, 'id') and model.id > 0:
-        if request.form.has_key('photo-old') and request.form['photo-old'] != request.form['image-0']:
-          oldphoto = request.form['photo-old']
-          oldpath = os.path.join(flask.current_app.config['UPLOAD_FOLDER'], oldphoto)
-
-          if isfile(oldpath):
-            os.remove(oldpath)
-
-  def on_model_change(self, form, model):
-    if request.form.has_key('image-0'):
-      self.process_image(form, model)
-    elif request.form.has_key('photo-old'):
-      model.photo = request.form['photo-old']
-
-  def on_model_delete(self, model):
-    file_path = os.path.join(flask.current_app.config['UPLOAD_FOLDER'], model.photo)
-    if isfile(file_path):
-      os.remove(file_path)
-
+    self.column_formatters['photo'] = get_image_column_formatter(self.form.photo, 'photo')
+    add_image_uploading_handlers(self.form, self.model, session, self)
