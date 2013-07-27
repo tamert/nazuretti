@@ -285,3 +285,14 @@ h1 span {
   background: #a00;
   color: #fff;
 }
+
+.order-list-info {
+  float: left;
+}
+
+.order-shipping-badge {
+  width: 227px;
+  height: 123px;
+  float: right;
+  margin-top: -20px;
+}
