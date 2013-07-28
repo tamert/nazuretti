@@ -316,3 +316,10 @@ h1 span {
   text-align: center;
   margin-right: 3px;
 }
+
+.footer-phone {
+  margin-left: 15px;
+  height: 16px;
+  padding-left: 20px;
+  background: url(../images/phone-icon.png) left 50% no-repeat;
+}
