@@ -55,8 +55,6 @@ def get_image_column_formatter(field, field_name):
   return formatter
 
 def remove_files_after_deletion(form_class, model):
-  import pudb
-  pudb.set_trace()
   form = form_class()
   for field in form:
     if field.__class__ == ImageUploadField:
@@ -121,8 +119,6 @@ def update_filenames_to_model(form_class, model, session):
             os.rename(thumbnail['old_path'], thumbnail['new_path'])
 
 def process_image_uploads(form_class, model, session):
-  import pudb
-  pudb.set_trace()
   form = form_class(flask.request.form)
   for field in form:
     if field.__class__ == ImageUploadField:
