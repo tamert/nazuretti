@@ -296,3 +296,23 @@ h1 span {
   float: right;
   margin-top: -20px;
 }
+
+.order-with-phone {
+  height: 36px;
+}
+
+.phone-button {
+  float: right;
+  display: block;
+  height: 36px;
+  width: 190px;
+  background: url(../images/phone-button.png) no-repeat;
+  padding-left: 30px;
+  line-height: 36px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Helvetica, Arial;
+  text-align: center;
+  margin-right: 3px;
+}
