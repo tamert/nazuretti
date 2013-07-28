@@ -15,7 +15,7 @@
     <div class="gallery-item" style="height: 200px;">
       <div class="gallery-item-name"><h2>{{picture.title}}</h2> </div>
       <div class="gallery-image">
-        <a href="{{ url_for('static', filename='uploads/pictures/' + picture.image) }}" class="preload" data-rel="prettyPhoto" title="">
+        <a href="{{ url_for('static', filename='uploads/pictures/' + picture.image) }}" class="preload" data-rel="prettyPhoto" title="{{ picture.description }}">
           <img src="{{ url_for('static', filename='uploads/pictures/thumbs/' + picture.image) }}" alt="{{picture.title}}" />
         </a>
       </div>

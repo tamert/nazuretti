@@ -42,6 +42,7 @@ class Picture(db.Model):
 
   id = db.Column(db.Integer, primary_key = True)
   title = db.Column(db.String)
+  description = db.Column(db.Text)
   image = db.Column(db.String)
 
   def thumbnail(self):

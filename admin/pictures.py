@@ -12,6 +12,7 @@ from .components.image_upload.image_upload import get_image_column_formatter, ad
 
 class PictureForm(Form):
   title = TextField('Isim')
+  description = TextAreaField("Aciklama")
   image = ImageUploadField("Resim", upload_options=dict(
     crop       = dict(ratio = 256.0/250.0, min = (256,250)),
     max_width  = 400,
@@ -32,6 +33,7 @@ class PictureView(ModelView):
   column_labels = dict(
     title        = 'Isim',
     image        = 'Resim',
+    descriptin   = 'Aciklama'
   )
 
   def __init__(self, session, **kwargs):
