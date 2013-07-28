@@ -84,7 +84,8 @@ def update_filenames_to_model(form_class, model, session):
   form = form_class(flask.request.form)
   for field in form:
     if field.__class__ == ImageUploadField:
-      if getattr(model, field.name):
+      is_changed_or_created = request.form.get(field.name + '-filename', False)
+      if getattr(model, field.name) and is_changed_or_created:
         model_name = field.widget.model_name
         new_filename = str(model.id) + '_' + getattr(model, field.name)
 
@@ -175,16 +176,15 @@ def process_image_uploads(form_class, model, session):
 
         img.save(new_path)
 
-        if len(thumbnails) > 0:
-          for thumbnail in thumbnails:
-            img = ImageKit(new_path)
-            thumbnail_path = os.path.join(thumbs_dir, ImageKit.append_name(new_filename, thumbnail['name']))
+        for thumbnail in thumbnails:
+          img = ImageKit(new_path)
+          thumbnail_path = os.path.join(thumbs_dir, ImageKit.append_name(new_filename, thumbnail['name']))
 
-            if not isdir(thumbs_dir):
-              os.mkdir(thumbs_dir)
+          if not isdir(thumbs_dir):
+            os.mkdir(thumbs_dir)
 
-            img.thumbnail(thumbnail['size'])
-            img.save(thumbnail_path)
+          img.thumbnail(thumbnail['size'])
+          img.save(thumbnail_path)
 
         setattr(model, field.name, new_filename)
         session.add(model)
@@ -197,3 +197,9 @@ def process_image_uploads(form_class, model, session):
           if old_photo and old_photo != new_filename:
             if isfile(old_photo_path):
               os.remove(old_photo_path)
+
+            for thumbnail in thumbnails:
+              thumbnail_path = os.path.join(thumbs_dir, ImageKit.append_name(old_photo, thumbnail['name']))
+
+              if isfile(thumbnail_path):
+                os.remove(thumbnail_path)
