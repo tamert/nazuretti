@@ -1,5 +1,25 @@
 {% extends 'admin/master.html' %}
 {% block body %}
     <h1>Site Ayarlari</h1>
+    <form action="{{ url_for('sitesettings.update') }}" method="post" class="form-horizontal">
+      <div style="display:none;">{{form.csrf_token}}</div>
+      {% for field in form %}
+        {% if field.name != 'csrf_token' %}
+        <div class="control-group">
+          <div class="control-label">{{field.label}}</div>
+          <div class="controls">
+            <div>
+              {{field}}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+      <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn btn-primary" value="Kaydet">
+      </div>
+    </div>
+    </form>
 {% endblock %}
 

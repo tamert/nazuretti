@@ -61,3 +61,18 @@ class News(db.Model):
 
   def __unicode__(self):
     return u'<News:%s...>' % self.content[0:10]
+
+class SiteSettings(db.Model):
+  __tablename__ = 'site_settings'
+
+  id = db.Column(db.Integer, primary_key = True)
+  facebook = db.Column(db.String)
+  twitter  = db.Column(db.String)
+  order_email = db.Column(db.String)
+  order_phone = db.Column(db.String)
+  contact_email = db.Column(db.String)
+  contact_phone = db.Column(db.String)
+
+  def __unicode__(self):
+    return u'<SiteSettings>'
+

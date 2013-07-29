@@ -16,5 +16,5 @@ admin = Admin(flask.current_app, name=u'Yönetim Paneli', index_view=site_settin
 admin.add_view(product.ProductView(models.db.session, name=u'Ürünler'))
 admin.add_view(pictures.PictureView(models.db.session, name=u'Fotoğraflar'))
 admin.add_view(news.NewsView(models.db.session, name=u'Haberler'))
-admin.add_view(site_settings.SiteSettingsView(name=u'Genel Ayarlar'))
+admin.add_view(site_settings.SiteSettingsView(name=u'Genel Ayarlar', endpoint='sitesettings'))
 admin.add_view(mirror.MirrorImage())
