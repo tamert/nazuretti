@@ -24,6 +24,7 @@ import news
 import orders
 import contact
 import pictures
+import site_settings
 
 @app.route('/')
 def index():

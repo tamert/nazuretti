@@ -323,3 +323,52 @@ h1 span {
   padding-left: 20px;
   background: url(../images/phone-icon.png) left 50% no-repeat;
 }
+
+.comment-form {
+  width: 61%;
+  padding-right: 30px;
+  border-right: 1px dotted #ccc;
+  float: left;
+}
+
+.comment-form .row.row-4 .form-field,
+.comment-form .row .form-field{
+  float: none;
+}
+
+.comment-form .row.row-4 input {
+  float: right;
+  width: 350px;
+}
+
+.row textarea.textarea {
+  width: 350px;
+  float: right;
+}
+
+.order-submit .contact-form .comment-form .row label,
+.order-submit .contact-form .comment-form .row label.second {
+  margin: 0;
+  text-align: left;
+  padding: 0;
+}
+
+.order-submit .contact-form .comment-form .btn-submit {
+  float: right;
+}
+
+.contact-info {
+  float: right;
+  font-size: 14px;
+  width: 280px;
+}
+
+.contact-info .label {
+  display: block;
+  float: left;
+  color: #444;
+}
+
+.contact-info .value {
+  float: right;
+}
