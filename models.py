@@ -66,12 +66,16 @@ class SiteSettings(db.Model):
   __tablename__ = 'site_settings'
 
   id = db.Column(db.Integer, primary_key = True)
-  facebook = db.Column(db.String)
-  twitter  = db.Column(db.String)
-  order_email = db.Column(db.String)
-  order_phone = db.Column(db.String)
+  facebook      = db.Column(db.String)
+  twitter       = db.Column(db.String)
+  order_email   = db.Column(db.String)
+  order_phone   = db.Column(db.String)
   contact_email = db.Column(db.String)
   contact_phone = db.Column(db.String)
+
+  bank_person   = db.Column(db.String)
+  bank_name     = db.Column(db.String)
+  bank_iban     = db.Column(db.String)
 
   def __unicode__(self):
     return u'<SiteSettings>'

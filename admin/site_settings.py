@@ -7,14 +7,18 @@ class IndexView(AdminIndexView):
     return self.render('admin/index/index.html')
 
 class SiteSettingsForm(Form):
-  facebook = TextField('Facebook Adresi')
-  twitter  = TextField('Twitter Adresi')
+  facebook      = TextField('Facebook Adresi')
+  twitter       = TextField('Twitter Adresi')
 
-  order_email = TextField('Siparis Email')
-  order_phone = TextField('Siparis Telefon')
+  order_email   = TextField('Siparis Email')
+  order_phone   = TextField('Siparis Telefon')
 
   contact_email = TextField('Iletisim Email')
   contact_phone = TextField('Iletisim Telefon')
+
+  bank_person   = TextField('Banka Alici Ismi')
+  bank_name     = TextField('Banka Ismi')
+  bank_iban     = TextField('Banka IBAN')
 
 
 class SiteSettingsView(BaseView):

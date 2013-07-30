@@ -361,6 +361,7 @@ h1 span {
   float: right;
   font-size: 14px;
   width: 280px;
+  font-family: Helvetica, Ubuntu, Arial !important;
 }
 
 .contact-info .label {
